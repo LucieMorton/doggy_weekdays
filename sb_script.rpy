@@ -60,7 +60,7 @@ init:
     transform sb_nightfilter:
         matrixcolor SaturationMatrix(0.8) * BrightnessMatrix(-0.1) * TintMatrix((115, 115, 165)) 
 
-    transform blvrred: 
+    transform sb_blvrred: 
         mesh True 
         shader "sb.blurred" 
         u_resolution (1920, 1080) 
@@ -79,11 +79,11 @@ init python:
 
         const int nsamples = 10;
         vec2 center = u_mouse.xy /u_resolution.xy;
-	    float blurStart = 1.0;
+	float blurStart = 1.0;
         float blurWidth = 0.1;
 
     
-	    vec2 uv = v_tex_coord;
+	vec2 uv = v_tex_coord;
     
         uv -= center;
         float precompute = blurWidth * (1.0 / float(nsamples - 1));
@@ -98,7 +98,7 @@ init python:
     
         color /= float(nsamples);
     
-	    gl_FragColor = color;                              
+	gl_FragColor = color;                              
 
     """) 
     
@@ -604,7 +604,7 @@ label sb_start_play:
     th "...я пес..." 
     play music music_list["sparkles"]
     window hide 
-    scene bg ext_house_of_mt_night at blvrred with Dissolve(12.5) 
+    scene bg ext_house_of_mt_night at sb_blvrred with Dissolve(12.5) 
     stop music 
     play sound moan 
     $ renpy.pause (7.5) 
